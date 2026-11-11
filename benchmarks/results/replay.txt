@@ -1,0 +1,8 @@
+goos: linux
+goarch: arm64
+pkg: github.com/matchcore/matchcore-go/internal/core
+BenchmarkEventReplay/1000-8         	       1	   5375800 ns/op	  66.35 MB/s	 1401896 B/op	   24022 allocs/op
+BenchmarkEventReplay/10000-8        	       1	  54286895 ns/op	  66.47 MB/s	12734256 B/op	  222089 allocs/op
+BenchmarkEventReplay/100000-8       	       1	 553819152 ns/op	  66.18 MB/s	122782984 B/op	 2202533 allocs/op
+PASS
+ok  	github.com/matchcore/matchcore-go/internal/core	0.879s

@@ -1,0 +1,26 @@
+goos: linux
+goarch: arm64
+pkg: github.com/matchcore/matchcore-go/internal/core
+BenchmarkBook/1000/Insert-8  	     100	      3192 ns/op	     688 B/op	       8 allocs/op
+BenchmarkBook/1000/Match-8   	     100	      3425 ns/op	    1216 B/op	       8 allocs/op
+BenchmarkBook/1000/Partial-8 	     100	      3119 ns/op	    1456 B/op	       9 allocs/op
+BenchmarkBook/1000/Cancel-8  	     100	      1897 ns/op	     512 B/op	       3 allocs/op
+BenchmarkBook/1000/Sweep-8   	     100	     19452 ns/op	   15806 B/op	      51 allocs/op
+BenchmarkBook/1000/Snapshot-8         	     100	   1134895 ns/op	  688228 B/op	       9 allocs/op
+BenchmarkBook/1000/Replay-8           	     100	      3765 ns/op	     416 B/op	       6 allocs/op
+BenchmarkBook/10000/Insert-8          	     100	      2664 ns/op	     688 B/op	       8 allocs/op
+BenchmarkBook/10000/Match-8           	     100	      4637 ns/op	    1216 B/op	       8 allocs/op
+BenchmarkBook/10000/Partial-8         	     100	      4139 ns/op	    1456 B/op	       9 allocs/op
+BenchmarkBook/10000/Cancel-8          	     100	      1494 ns/op	     512 B/op	       3 allocs/op
+BenchmarkBook/10000/Sweep-8           	     100	      8537 ns/op	   15792 B/op	      51 allocs/op
+BenchmarkBook/10000/Snapshot-8        	     100	   9373885 ns/op	 9418065 B/op	      19 allocs/op
+BenchmarkBook/10000/Replay-8          	     100	      2946 ns/op	     416 B/op	       6 allocs/op
+BenchmarkBook/100000/Insert-8         	     100	      3128 ns/op	     688 B/op	       8 allocs/op
+BenchmarkBook/100000/Match-8          	     100	      4221 ns/op	    1216 B/op	       8 allocs/op
+BenchmarkBook/100000/Partial-8        	     100	      2998 ns/op	    1456 B/op	       9 allocs/op
+BenchmarkBook/100000/Cancel-8         	     100	      2441 ns/op	     512 B/op	       3 allocs/op
+BenchmarkBook/100000/Sweep-8          	     100	     20932 ns/op	   15792 B/op	      51 allocs/op
+BenchmarkBook/100000/Snapshot-8       	     100	 132640874 ns/op	83981322 B/op	      20 allocs/op
+BenchmarkBook/100000/Replay-8         	     100	      9866 ns/op	     416 B/op	       6 allocs/op
+PASS
+ok  	github.com/matchcore/matchcore-go/internal/core	16.853s

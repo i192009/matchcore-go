@@ -1,0 +1,18 @@
+name: matchcore-test
+services:
+  postgres:
+    image: postgres:18-bookworm
+    environment: {POSTGRES_USER: matchcore, POSTGRES_PASSWORD: test-only-password, POSTGRES_DB: matchcore_test}
+    ports: ["127.0.0.1:25432:5432"]
+    healthcheck:
+      test: [CMD, pg_isready, -U, matchcore, -d, matchcore_test]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  redis:
+    image: redis:8-alpine
+    ports: ["127.0.0.1:26379:6379"]
+  nats:
+    image: nats:2.14-alpine
+    command: [-js]
+    ports: ["127.0.0.1:24222:4222"]

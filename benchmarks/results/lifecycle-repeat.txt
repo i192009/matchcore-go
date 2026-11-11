@@ -1,0 +1,1 @@
+ok  	github.com/matchcore/matchcore-go/tests/integration	9.588s

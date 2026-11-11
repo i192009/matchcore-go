@@ -1,0 +1,4 @@
+{"BlockIO":"0B / 0B","CPUPerc":"0.24%","Container":"matchcore-matchcore-1","ID":"c360156d7338","MemPerc":"0.20%","MemUsage":"15.36MiB / 7.55GiB","Name":"matchcore-matchcore-1","NetIO":"6.07MB / 24.1MB","PIDs":"14"}
+{"BlockIO":"11.4MB / 0B","CPUPerc":"2.67%","Container":"matchcore-gateway-1","ID":"a031b9aec0a6","MemPerc":"0.31%","MemUsage":"24.12MiB / 7.55GiB","Name":"matchcore-gateway-1","NetIO":"9.85MB / 6.33MB","PIDs":"14"}
+{"BlockIO":"22.3MB / 0B","CPUPerc":"1.09%","Container":"matchcore-publisher-1","ID":"c2c32dbdbe93","MemPerc":"0.41%","MemUsage":"31.95MiB / 7.55GiB","Name":"matchcore-publisher-1","NetIO":"5.64MB / 6.81MB","PIDs":"14"}
+{"BlockIO":"20.3MB / 395MB","CPUPerc":"7.13%","Container":"matchcore-postgres-1","ID":"f3f7e820809d","MemPerc":"1.66%","MemUsage":"128.2MiB / 7.55GiB","Name":"matchcore-postgres-1","NetIO":"89MB / 29.9MB","PIDs":"16"}

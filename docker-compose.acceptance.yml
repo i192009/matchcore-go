@@ -1,0 +1,10 @@
+# Optional port-free override for an isolated acceptance project.
+services:
+  postgres: {ports: !reset []}
+  redis: {ports: !reset []}
+  nats: {ports: !reset []}
+  matchcore: {ports: !reset []}
+  gateway: {ports: !reset []}
+  web: {ports: !reset []}
+  prometheus: {ports: !reset []}
+  grafana: {ports: !reset []}

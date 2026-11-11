@@ -1,0 +1,663 @@
+{
+  "openapi": "3.0.3",
+  "info": {
+    "title": "MatchCore simulation gateway",
+    "version": "1.0.0",
+    "description": "Quantities: 0.001 coin lots. Price: USD cents per lot ($10 per coin). max_spend and quote balances: cents. All financial fields are integers."
+  },
+  "servers": [
+    {
+      "url": "http://localhost:8080"
+    }
+  ],
+  "security": [
+    {
+      "ApiKey": []
+    }
+  ],
+  "components": {
+    "securitySchemes": {
+      "ApiKey": {
+        "type": "http",
+        "scheme": "bearer"
+      }
+    }
+  },
+  "paths": {
+    "/api/instruments": {
+      "get": {
+        "summary": "List deterministic instrument configurations",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/book": {
+      "get": {
+        "summary": "Committed aggregated order book",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/trades": {
+      "get": {
+        "summary": "Most recent 100 public executions",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/balances": {
+      "get": {
+        "summary": "Authenticated account balances",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/orders": {
+      "get": {
+        "summary": "Authenticated account order history (200)",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      },
+      "post": {
+        "summary": "Submit idempotent orders command",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "client_id",
+                  "instrument",
+                  "side",
+                  "type",
+                  "tif",
+                  "quantity"
+                ],
+                "properties": {
+                  "client_id": {
+                    "type": "string",
+                    "maxLength": 128
+                  },
+                  "instrument": {
+                    "type": "string",
+                    "enum": [
+                      "BTC-USD",
+                      "ETH-USD",
+                      "SOL-USD"
+                    ]
+                  },
+                  "side": {
+                    "type": "string",
+                    "enum": [
+                      "BUY",
+                      "SELL"
+                    ]
+                  },
+                  "type": {
+                    "type": "string",
+                    "enum": [
+                      "LIMIT",
+                      "MARKET"
+                    ]
+                  },
+                  "tif": {
+                    "type": "string",
+                    "enum": [
+                      "GTC",
+                      "IOC"
+                    ]
+                  },
+                  "price": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "quantity": {
+                    "type": "integer",
+                    "format": "int64"
+                  },
+                  "max_spend": {
+                    "type": "integer",
+                    "format": "int64"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Committed command envelope (schema_version=1)"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Unknown instrument"
+          },
+          "409": {
+            "description": "Idempotency key conflict"
+          },
+          "422": {
+            "description": "Durably recorded business rejection"
+          },
+          "429": {
+            "description": "Rate limit or queue saturation"
+          },
+          "503": {
+            "description": "Engine unsafe, dependency failure or ambiguous commit; retry same key"
+          },
+          "504": {
+            "description": "Deadline; retry same key"
+          }
+        }
+      }
+    },
+    "/api/order": {
+      "get": {
+        "summary": "One owned order by order_id",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/operations": {
+      "get": {
+        "summary": "Engine readiness, queue and persistence statistics",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/audit": {
+      "get": {
+        "summary": "Authenticated account ledger (200)",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/identity": {
+      "get": {
+        "summary": "Authenticated account and role",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/account": {
+      "get": {
+        "summary": "Lifetime authenticated account fee, execution and order totals",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/my-trades": {
+      "get": {
+        "summary": "Most recent 100 owned executions",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/market": {
+      "get": {
+        "summary": "Disposable Redis last-trade cache; null when empty",
+        "parameters": [
+          {
+            "name": "instrument",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          },
+          {
+            "name": "order_id",
+            "in": "query",
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "JSON domain document"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "429": {
+            "description": "Rate limited"
+          },
+          "503": {
+            "description": "Service unavailable"
+          }
+        }
+      }
+    },
+    "/api/cancel": {
+      "post": {
+        "summary": "Submit idempotent cancel command",
+        "requestBody": {
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "type": "object",
+                "additionalProperties": false,
+                "required": [
+                  "key",
+                  "instrument",
+                  "order_id"
+                ],
+                "properties": {
+                  "key": {
+                    "type": "string"
+                  },
+                  "instrument": {
+                    "type": "string"
+                  },
+                  "order_id": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "200": {
+            "description": "Committed command envelope (schema_version=1)"
+          },
+          "400": {
+            "description": "Malformed request"
+          },
+          "401": {
+            "description": "Authentication required"
+          },
+          "404": {
+            "description": "Unknown instrument"
+          },
+          "409": {
+            "description": "Idempotency key conflict"
+          },
+          "422": {
+            "description": "Durably recorded business rejection"
+          },
+          "429": {
+            "description": "Rate limit or queue saturation"
+          },
+          "503": {
+            "description": "Engine unsafe, dependency failure or ambiguous commit; retry same key"
+          },
+          "504": {
+            "description": "Deadline; retry same key"
+          }
+        }
+      }
+    },
+    "/healthz": {
+      "get": {
+        "summary": "healthz",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "503": {
+            "description": "Not ready"
+          }
+        }
+      }
+    },
+    "/readyz": {
+      "get": {
+        "summary": "readyz",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "503": {
+            "description": "Not ready"
+          }
+        }
+      }
+    },
+    "/metrics": {
+      "get": {
+        "summary": "metrics",
+        "security": [],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "503": {
+            "description": "Not ready"
+          }
+        }
+      }
+    },
+    "/ws": {
+      "get": {
+        "summary": "Origin-validated WebSocket upgrade; authenticate in first message within five seconds",
+        "security": [],
+        "responses": {
+          "101": {
+            "description": "See docs/api.md for subscribe, snapshot and delta protocol"
+          },
+          "403": {
+            "description": "Origin denied"
+          }
+        }
+      }
+    }
+  }
+}

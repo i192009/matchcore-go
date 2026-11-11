@@ -1,0 +1,65 @@
+Fetching vulnerabilities from the database...
+
+Checking the code against the vulnerabilities...
+
+The package pattern matched the following 14 root packages:
+  github.com/matchcore/matchcore-go/api/gen/matchcore/v1
+  github.com/matchcore/matchcore-go/internal/core
+  github.com/matchcore/matchcore-go/internal/observability
+  github.com/matchcore/matchcore-go/migrations
+  github.com/matchcore/matchcore-go/internal/store
+  github.com/matchcore/matchcore-go/internal/engine
+  github.com/matchcore/matchcore-go/internal/transport
+  github.com/matchcore/matchcore-go/cmd/acceptance
+  github.com/matchcore/matchcore-go/cmd/benchmark
+  github.com/matchcore/matchcore-go/cmd/gateway
+  github.com/matchcore/matchcore-go/cmd/matchcore
+  github.com/matchcore/matchcore-go/cmd/publisher
+  github.com/matchcore/matchcore-go/cmd/simulator
+  github.com/matchcore/matchcore-go/tests/integration
+Govulncheck scanned the following 43 modules and the go1.26.11 standard library:
+  github.com/matchcore/matchcore-go
+  github.com/beorn7/perks@v1.0.1
+  github.com/cenkalti/backoff/v5@v5.0.3
+  github.com/cespare/xxhash/v2@v2.3.0
+  github.com/coder/websocket@v1.8.15
+  github.com/go-logr/logr@v1.4.4
+  github.com/go-logr/stdr@v1.2.2
+  github.com/google/uuid@v1.6.0
+  github.com/grpc-ecosystem/grpc-gateway/v2@v2.30.0
+  github.com/jackc/pgpassfile@v1.0.0
+  github.com/jackc/pgservicefile@v0.0.0-20240606120523-5a60cdf6a761
+  github.com/jackc/pgx/v5@v5.12.0
+  github.com/jackc/puddle/v2@v2.2.3
+  github.com/klauspost/compress@v1.20.4
+  github.com/munnerz/goautoneg@v0.0.0-20191010083416-a7dc8b61c822
+  github.com/nats-io/nats.go@v1.55.0
+  github.com/nats-io/nkeys@v0.4.16
+  github.com/nats-io/nuid@v1.0.1
+  github.com/prometheus/client_golang@v1.25.0
+  github.com/prometheus/client_model@v0.6.3
+  github.com/prometheus/common@v0.72.0
+  github.com/prometheus/procfs@v0.22.0
+  github.com/redis/go-redis/v9@v9.23.0
+  go.opentelemetry.io/auto/sdk@v1.2.1
+  go.opentelemetry.io/otel@v1.47.0
+  go.opentelemetry.io/otel/exporters/otlp/otlptrace@v1.47.0
+  go.opentelemetry.io/otel/exporters/otlp/otlptrace/otlptracehttp@v1.47.0
+  go.opentelemetry.io/otel/log@v1.47.0
+  go.opentelemetry.io/otel/metric@v1.47.0
+  go.opentelemetry.io/otel/sdk@v1.47.0
+  go.opentelemetry.io/otel/trace@v1.47.0
+  go.opentelemetry.io/proto/otlp@v1.11.0
+  go.uber.org/atomic@v1.12.0
+  golang.org/x/crypto@v0.59.0
+  golang.org/x/net@v0.62.0
+  golang.org/x/sync@v0.25.0
+  golang.org/x/sys@v0.50.0
+  golang.org/x/text@v0.44.0
+  golang.org/x/time@v0.16.0
+  google.golang.org/genproto/googleapis/api@v0.0.0-20260928230214-8a89bd6388cc
+  google.golang.org/genproto/googleapis/rpc@v0.0.0-20260928230214-8a89bd6388cc
+  google.golang.org/grpc@v1.85.0
+  google.golang.org/protobuf@v1.36.12
+
+No vulnerabilities found.

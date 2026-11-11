@@ -1,0 +1,131 @@
+File: core.test
+Build ID: f8e22c742960aa4aab10bd1bac9400c883dee286
+Type: cpu
+Time: 2026-11-11 16:25:40 UTC
+Duration: 16.78s, Total samples = 19.51s (116.24%)
+Showing nodes accounting for 17.54s, 89.90% of 19.51s total
+Dropped 200 nodes (cum <= 0.10s)
+      flat  flat%   sum%        cum   cum%
+     2.54s 13.02% 13.02%      2.54s 13.02%  runtime.memmove
+     2.13s 10.92% 23.94%      5.79s 29.68%  github.com/matchcore/matchcore-go/internal/core.(*Book).Orders
+     1.40s  7.18% 31.11%      1.40s  7.18%  runtime.memclrNoHeapPointers
+     1.30s  6.66% 37.78%      6.98s 35.78%  encoding/json.structEncoder.encode
+     0.90s  4.61% 42.39%      2.17s 11.12%  sort.partition_func
+     0.86s  4.41% 46.80%      1.13s  5.79%  runtime.tryDeferToSpanScan
+     0.82s  4.20% 51.00%      1.51s  7.74%  runtime.scanObjectsSmall
+     0.70s  3.59% 54.59%      0.80s  4.10%  encoding/json.appendString[go.shape.string]
+     0.43s  2.20% 56.79%      0.88s  4.51%  internal/strconv.AppendUint
+     0.43s  2.20% 59.00%      0.43s  2.20%  runtime.futex
+     0.39s  2.00% 60.99%      0.39s  2.00%  bytes.(*Buffer).tryGrowByReslice (inline)
+     0.39s  2.00% 62.99%      1.59s  8.15%  encoding/json.stringEncoder
+     0.38s  1.95% 64.94%      0.38s  1.95%  runtime.nanotime (inline)
+     0.37s  1.90% 66.84%      1.01s  5.18%  bytes.(*Buffer).WriteString
+     0.33s  1.69% 68.53%      0.55s  2.82%  bytes.(*Buffer).Write
+     0.31s  1.59% 70.12%      0.31s  1.59%  github.com/matchcore/matchcore-go/internal/core.(*Book).Orders.func1
+     0.28s  1.44% 71.55%      0.93s  4.77%  runtime.scanObject
+     0.27s  1.38% 72.94%      0.27s  1.38%  runtime.madvise
+     0.26s  1.33% 74.27%      0.27s  1.38%  reflect.Value.Field
+     0.24s  1.23% 75.50%      0.24s  1.23%  internal/strconv.formatBase10
+     0.23s  1.18% 76.68%      0.89s  4.56%  bytes.(*Buffer).WriteByte
+     0.22s  1.13% 77.81%      1.81s  9.28%  encoding/json.intEncoder
+     0.20s  1.03% 78.83%      0.50s  2.56%  github.com/matchcore/matchcore-go/internal/core.(*Book).Plan
+     0.16s  0.82% 79.65%      1.23s  6.30%  internal/reflectlite.typedmemmove
+     0.15s  0.77% 80.42%      0.15s  0.77%  runtime.bool2int (inline)
+     0.14s  0.72% 81.14%      1.02s  5.23%  internal/strconv.AppendInt
+     0.12s  0.62% 81.75%      0.44s  2.26%  sort.insertionSort_func
+     0.11s  0.56% 82.32%      0.12s  0.62%  runtime.findObject
+     0.11s  0.56% 82.88%      0.11s  0.56%  runtime.heapArenaOf (inline)
+     0.11s  0.56% 83.44%      0.11s  0.56%  runtime.ifaceeq
+     0.11s  0.56% 84.01%      1.15s  5.89%  runtime.typedmemmove
+     0.10s  0.51% 84.52%      0.10s  0.51%  reflect.Value.Int (inline)
+     0.08s  0.41% 84.93%      0.12s  0.62%  github.com/matchcore/matchcore-go/internal/core.insert
+     0.08s  0.41% 85.34%      0.15s  0.77%  runtime.(*wbBuf).get2 (inline)
+     0.08s  0.41% 85.75%      0.10s  0.51%  runtime.pcvalue
+     0.07s  0.36% 86.11%      0.83s  4.25%  github.com/matchcore/matchcore-go/internal/core.(*Book).Apply
+     0.07s  0.36% 86.47%      0.10s  0.51%  runtime.(*unwinder).initAt
+     0.07s  0.36% 86.83%      0.23s  1.18%  runtime.bulkBarrierPreWrite
+     0.06s  0.31% 87.13%      0.12s  0.62%  runtime.wbBufFlush1
+     0.05s  0.26% 87.39%      1.28s  6.56%  internal/reflectlite.Swapper.func9
+     0.05s  0.26% 87.65%      1.30s  6.66%  runtime.mallocgc
+     0.04s  0.21% 87.85%      0.58s  2.97%  github.com/matchcore/matchcore-go/internal/core.(*Book).add
+     0.04s  0.21% 88.06%      0.18s  0.92%  runtime.(*sweepLocked).sweep
+     0.04s  0.21% 88.26%      1.06s  5.43%  strconv.AppendInt (inline)
+     0.03s  0.15% 88.42%      7.06s 36.19%  encoding/json.arrayEncoder.encode
+     0.03s  0.15% 88.57%      0.12s  0.62%  runtime.(*spanInlineMarkBits).tryAcquire
+     0.03s  0.15% 88.72%      0.36s  1.85%  runtime.growslice
+     0.03s  0.15% 88.88%      0.25s  1.28%  runtime.mallocgcSmallScanNoHeader
+     0.02s   0.1% 88.98%      1.78s  9.12%  github.com/matchcore/matchcore-go/internal/core.fixture
+     0.02s   0.1% 89.08%      0.13s  0.67%  internal/runtime/maps.(*table).split
+     0.02s   0.1% 89.19%      0.10s  0.51%  runtime.(*unwinder).resolveInternal
+     0.02s   0.1% 89.29%      0.32s  1.64%  runtime.bgsweep
+     0.02s   0.1% 89.39%      0.19s  0.97%  runtime.mapassign_faststr
+     0.02s   0.1% 89.49%      0.15s  0.77%  runtime.tracebackPCs
+     0.01s 0.051% 89.54%      0.10s  0.51%  fmt.(*pp).doPrintf
+     0.01s 0.051% 89.60%      0.18s  0.92%  github.com/matchcore/matchcore-go/internal/core.(*Book).Depth
+     0.01s 0.051% 89.65%      1.07s  5.48%  reflect.typedmemmove (inline)
+     0.01s 0.051% 89.70%      0.28s  1.44%  runtime.callers
+     0.01s 0.051% 89.75%      0.26s  1.33%  runtime.callers.func1
+     0.01s 0.051% 89.80%      0.16s  0.82%  runtime.mallocgcSmallNoscan
+     0.01s 0.051% 89.85%      4.02s 20.60%  runtime.systemstack
+     0.01s 0.051% 89.90%      0.23s  1.18%  runtime.wakep
+         0     0% 89.90%      0.74s  3.79%  bytes.(*Buffer).grow
+         0     0% 89.90%      0.74s  3.79%  bytes.growSlice
+         0     0% 89.90%      7.06s 36.19%  encoding/json.(*encodeState).marshal
+         0     0% 89.90%      7.06s 36.19%  encoding/json.(*encodeState).reflectValue
+         0     0% 89.90%      7.90s 40.49%  encoding/json.Marshal
+         0     0% 89.90%      7.06s 36.19%  encoding/json.sliceEncoder.encode
+         0     0% 89.90%      0.16s  0.82%  fmt.Sprintf
+         0     0% 89.90%      0.18s  0.92%  github.com/matchcore/matchcore-go/internal/core.(*Book).Check
+         0     0% 89.90%     15.60s 79.96%  github.com/matchcore/matchcore-go/internal/core.BenchmarkBook.func1.1
+         0     0% 89.90%      1.59s  8.15%  github.com/matchcore/matchcore-go/internal/core.apply
+         0     0% 89.90%      0.13s  0.67%  internal/runtime/maps.(*table).rehash
+         0     0% 89.90%      0.12s  0.62%  runtime.(*mcache).nextFree
+         0     0% 89.90%      0.12s  0.62%  runtime.(*mcache).refill
+         0     0% 89.90%      0.11s  0.56%  runtime.(*mcentral).cacheSpan
+         0     0% 89.90%      0.27s  1.38%  runtime.(*pageAlloc).scavenge
+         0     0% 89.90%      0.27s  1.38%  runtime.(*pageAlloc).scavenge.func1
+         0     0% 89.90%      0.27s  1.38%  runtime.(*pageAlloc).scavengeOne
+         0     0% 89.90%      0.28s  1.44%  runtime.(*scavengerState).init.func2
+         0     0% 89.90%      0.28s  1.44%  runtime.(*scavengerState).run
+         0     0% 89.90%      0.27s  1.38%  runtime.Callers (inline)
+         0     0% 89.90%      0.12s  0.62%  runtime.ReadMemStats
+         0     0% 89.90%      0.28s  1.44%  runtime.bgscavenge
+         0     0% 89.90%      0.19s  0.97%  runtime.convT
+         0     0% 89.90%      0.13s  0.67%  runtime.deductAssistCredit
+         0     0% 89.90%      0.18s  0.92%  runtime.findRunnable
+         0     0% 89.90%      0.36s  1.85%  runtime.futexwakeup
+         0     0% 89.90%      0.13s  0.67%  runtime.gcAssistAlloc
+         0     0% 89.90%      0.13s  0.67%  runtime.gcAssistAlloc.func2
+         0     0% 89.90%      0.13s  0.67%  runtime.gcAssistAlloc1
+         0     0% 89.90%      2.99s 15.33%  runtime.gcBgMarkWorker
+         0     0% 89.90%      2.95s 15.12%  runtime.gcBgMarkWorker.func2
+         0     0% 89.90%      2.95s 15.12%  runtime.gcDrain
+         0     0% 89.90%      1.54s  7.89%  runtime.gcDrainMarkWorkerDedicated (inline)
+         0     0% 89.90%      1.41s  7.23%  runtime.gcDrainMarkWorkerIdle (inline)
+         0     0% 89.90%      0.13s  0.67%  runtime.gcDrainN
+         0     0% 89.90%      0.15s  0.77%  runtime.makeSpanClass (inline)
+         0     0% 89.90%      0.76s  3.90%  runtime.makeslice
+         0     0% 89.90%      0.68s  3.49%  runtime.mallocgcLarge
+         0     0% 89.90%      0.48s  2.46%  runtime.markroot
+         0     0% 89.90%      0.41s  2.10%  runtime.markroot.func1
+         0     0% 89.90%      0.24s  1.23%  runtime.mcall
+         0     0% 89.90%      0.63s  3.23%  runtime.memclrNoHeapPointersChunked
+         0     0% 89.90%      0.33s  1.69%  runtime.notewakeup
+         0     0% 89.90%      0.23s  1.18%  runtime.park_m
+         0     0% 89.90%      1.59s  8.15%  runtime.scanSpan
+         0     0% 89.90%      0.26s  1.33%  runtime.schedule
+         0     0% 89.90%      0.13s  0.67%  runtime.startTheWorldWithSema
+         0     0% 89.90%      0.22s  1.13%  runtime.startm
+         0     0% 89.90%      0.41s  2.10%  runtime.suspendG
+         0     0% 89.90%      0.24s  1.23%  runtime.sweepone
+         0     0% 89.90%      0.27s  1.38%  runtime.sysUnused (inline)
+         0     0% 89.90%      0.27s  1.38%  runtime.sysUnusedOS
+         0     0% 89.90%      0.12s  0.62%  runtime.wbBufFlush
+         0     0% 89.90%      0.12s  0.62%  runtime.wbBufFlush.func1
+         0     0% 89.90%      0.19s  0.97%  runtime.wbMove
+         0     0% 89.90%      2.65s 13.58%  sort.Slice
+         0     0% 89.90%      2.65s 13.58%  sort.pdqsort_func
+         0     0% 89.90%     14.49s 74.27%  testing.(*B).launch
+         0     0% 89.90%      1.12s  5.74%  testing.(*B).run1.func1
+         0     0% 89.90%     15.61s 80.01%  testing.(*B).runN
+         0     0% 89.90%      0.27s  1.38%  testing.(*common).Helper

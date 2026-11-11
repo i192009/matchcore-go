@@ -1,0 +1,74 @@
+name: verify
+on: [push, pull_request]
+permissions:
+  contents: read
+concurrency:
+  group: verify-${{ github.ref }}
+  cancel-in-progress: true
+jobs:
+  backend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    services:
+      postgres:
+        image: postgres:18-bookworm
+        env: {POSTGRES_USER: matchcore, POSTGRES_PASSWORD: ci-only-password, POSTGRES_DB: matchcore}
+        ports: [5432:5432]
+        options: --health-cmd "pg_isready -U matchcore" --health-interval 2s --health-timeout 2s --health-retries 30
+      redis:
+        image: redis:8-alpine
+        ports: [6379:6379]
+        options: --health-cmd "redis-cli ping" --health-interval 2s --health-timeout 2s --health-retries 30
+      nats:
+        image: nats:2.14-alpine
+        ports: [4222:4222]
+    env:
+      MATCHCORE_TEST_DATABASE_URL: postgres://matchcore:ci-only-password@localhost:5432/matchcore?sslmode=disable
+      MATCHCORE_TEST_NATS_URL: nats://localhost:4223
+      MATCHCORE_TEST_REDIS_ADDR: localhost:6379
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-go@v6
+        with: {go-version: '1.26.x', cache: true}
+      # GitHub service containers do not support command overrides. Launch the
+      # JetStream-enabled instance explicitly on a separate port.
+      - run: docker run -d --name nats-js -p 4223:4222 nats:2.14-alpine -js
+      - run: make lint
+      - uses: bufbuild/buf-setup-action@v1
+        with: {version: '1.61.0'}
+      - run: buf lint
+      - run: go test -race -count=1 -coverprofile=coverage.out ./...
+      - run: go run golang.org/x/vuln/cmd/govulncheck@v1.9.0 ./...
+      - uses: actions/upload-artifact@v4
+        with: {name: coverage, path: coverage.out}
+  frontend:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    defaults:
+      run: {working-directory: web}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with: {node-version: '24', cache: npm, cache-dependency-path: web/package-lock.json}
+      - run: npm ci
+      - run: npm run build
+      - run: npm test
+      - run: npm audit --audit-level=high
+  compose-acceptance:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - run: cp .env.example .env
+      - run: docker compose up --build -d --wait --wait-timeout 180
+      - run: sh scripts/acceptance.sh
+      - uses: actions/setup-node@v4
+        with: {node-version: '24', cache: npm, cache-dependency-path: web/package-lock.json}
+      - run: cd web && npm ci && npx playwright install --with-deps chromium && npm run test:e2e
+      - if: always()
+        run: docker compose logs --no-color > compose.log
+      - if: always()
+        uses: actions/upload-artifact@v4
+        with: {name: compose-evidence, path: "compose.log\nweb/test-results\nbenchmarks/acceptance-state.json"}
+      - if: always()
+        run: docker compose down

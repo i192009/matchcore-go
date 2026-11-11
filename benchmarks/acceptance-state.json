@@ -1,0 +1,322 @@
+{
+  "Sell": {
+    "configuration_version": 1,
+    "id": "BTC-USD:4",
+    "instrument": "BTC-USD",
+    "sequence": 4,
+    "schema_version": 1,
+    "correlation_id": "accept-sell-1794416226091378591",
+    "timestamp": 1794416226093,
+    "plan": {
+      "changes": [
+        {
+          "after": {
+            "id": "3085a6535954a5b25a6dca44bbc4a408",
+            "client_id": "accept-sell-1794416226091378591",
+            "account": "bob",
+            "instrument": "BTC-USD",
+            "side": "SELL",
+            "type": "LIMIT",
+            "tif": "GTC",
+            "price": 5000,
+            "quantity": 2000,
+            "remaining": 2000,
+            "filled": 0,
+            "notional": 0,
+            "average_price": 0,
+            "max_spend": 0,
+            "reserved": 2000,
+            "fees": 0,
+            "status": "NEW",
+            "created": 1794416226093,
+            "updated": 1794416226093,
+            "sequence": 4
+          }
+        }
+      ],
+      "trades": [],
+      "attempts": 0
+    },
+    "events": [
+      {
+        "type": "BalanceReserved",
+        "order_id": "3085a6535954a5b25a6dca44bbc4a408"
+      },
+      {
+        "type": "OrderAccepted",
+        "order_id": "3085a6535954a5b25a6dca44bbc4a408"
+      }
+    ],
+    "order": {
+      "id": "3085a6535954a5b25a6dca44bbc4a408",
+      "client_id": "accept-sell-1794416226091378591",
+      "account": "bob",
+      "instrument": "BTC-USD",
+      "side": "SELL",
+      "type": "LIMIT",
+      "tif": "GTC",
+      "price": 5000,
+      "quantity": 2000,
+      "remaining": 2000,
+      "filled": 0,
+      "notional": 0,
+      "average_price": 0,
+      "max_spend": 0,
+      "reserved": 2000,
+      "fees": 0,
+      "status": "NEW",
+      "created": 1794416226093,
+      "updated": 1794416226093,
+      "sequence": 4
+    }
+  },
+  "Buy": {
+    "configuration_version": 1,
+    "id": "BTC-USD:5",
+    "instrument": "BTC-USD",
+    "sequence": 5,
+    "schema_version": 1,
+    "correlation_id": "accept-buy-1794416226091378591",
+    "timestamp": 1794416226111,
+    "plan": {
+      "changes": [
+        {
+          "before": {
+            "id": "3085a6535954a5b25a6dca44bbc4a408",
+            "client_id": "accept-sell-1794416226091378591",
+            "account": "bob",
+            "instrument": "BTC-USD",
+            "side": "SELL",
+            "type": "LIMIT",
+            "tif": "GTC",
+            "price": 5000,
+            "quantity": 2000,
+            "remaining": 2000,
+            "filled": 0,
+            "notional": 0,
+            "average_price": 0,
+            "max_spend": 0,
+            "reserved": 2000,
+            "fees": 0,
+            "status": "NEW",
+            "created": 1794416226093,
+            "updated": 1794416226093,
+            "sequence": 4
+          },
+          "after": {
+            "id": "3085a6535954a5b25a6dca44bbc4a408",
+            "client_id": "accept-sell-1794416226091378591",
+            "account": "bob",
+            "instrument": "BTC-USD",
+            "side": "SELL",
+            "type": "LIMIT",
+            "tif": "GTC",
+            "price": 5000,
+            "quantity": 2000,
+            "remaining": 1000,
+            "filled": 1000,
+            "notional": 5000000,
+            "average_price": 5000,
+            "max_spend": 0,
+            "reserved": 1000,
+            "fees": 5000,
+            "status": "PARTIALLY_FILLED",
+            "created": 1794416226093,
+            "updated": 1794416226111,
+            "sequence": 4
+          }
+        },
+        {
+          "after": {
+            "id": "66434aa34e0c65fd8ca6c0ad8913f421",
+            "client_id": "accept-buy-1794416226091378591",
+            "account": "alice",
+            "instrument": "BTC-USD",
+            "side": "BUY",
+            "type": "LIMIT",
+            "tif": "GTC",
+            "price": 5000,
+            "quantity": 1000,
+            "remaining": 0,
+            "filled": 1000,
+            "notional": 5000000,
+            "average_price": 5000,
+            "max_spend": 0,
+            "reserved": 0,
+            "fees": 5000,
+            "status": "FILLED",
+            "created": 1794416226111,
+            "updated": 1794416226111,
+            "sequence": 5
+          }
+        }
+      ],
+      "trades": [
+        {
+          "id": "BTC-USD:5:0",
+          "instrument": "BTC-USD",
+          "maker": "3085a6535954a5b25a6dca44bbc4a408",
+          "taker": "66434aa34e0c65fd8ca6c0ad8913f421",
+          "buyer": "alice",
+          "seller": "bob",
+          "price": 5000,
+          "quantity": 1000,
+          "notional": 5000000,
+          "fee": 5000,
+          "sequence": 5,
+          "timestamp": 1794416226111
+        }
+      ],
+      "attempts": 1
+    },
+    "events": [
+      {
+        "type": "BalanceReleased",
+        "order_id": "3085a6535954a5b25a6dca44bbc4a408"
+      },
+      {
+        "type": "TradeExecuted",
+        "trade_id": "BTC-USD:5:0"
+      },
+      {
+        "type": "SettlementCompleted",
+        "trade_id": "BTC-USD:5:0"
+      },
+      {
+        "type": "OrderPartiallyFilled",
+        "order_id": "3085a6535954a5b25a6dca44bbc4a408"
+      },
+      {
+        "type": "OrderFilled",
+        "order_id": "66434aa34e0c65fd8ca6c0ad8913f421"
+      }
+    ],
+    "order": {
+      "id": "66434aa34e0c65fd8ca6c0ad8913f421",
+      "client_id": "accept-buy-1794416226091378591",
+      "account": "alice",
+      "instrument": "BTC-USD",
+      "side": "BUY",
+      "type": "LIMIT",
+      "tif": "GTC",
+      "price": 5000,
+      "quantity": 1000,
+      "remaining": 0,
+      "filled": 1000,
+      "notional": 5000000,
+      "average_price": 5000,
+      "max_spend": 0,
+      "reserved": 0,
+      "fees": 5000,
+      "status": "FILLED",
+      "created": 1794416226111,
+      "updated": 1794416226111,
+      "sequence": 5
+    }
+  },
+  "BuyRequest": {
+    "client_id": "accept-buy-1794416226091378591",
+    "instrument": "BTC-USD",
+    "price": 5000,
+    "quantity": 1000,
+    "side": "BUY",
+    "tif": "GTC",
+    "type": "LIMIT"
+  },
+  "Alice": [
+    {
+      "account": "alice",
+      "asset": "BTC",
+      "available": 102000,
+      "reserved": 0,
+      "total": 102000
+    },
+    {
+      "account": "alice",
+      "asset": "ETH",
+      "available": 100000,
+      "reserved": 0,
+      "total": 100000
+    },
+    {
+      "account": "alice",
+      "asset": "SOL",
+      "available": 100000,
+      "reserved": 0,
+      "total": 100000
+    },
+    {
+      "account": "alice",
+      "asset": "USD",
+      "available": 89990000,
+      "reserved": 0,
+      "total": 89990000
+    }
+  ],
+  "Bob": [
+    {
+      "account": "bob",
+      "asset": "BTC",
+      "available": 98000,
+      "reserved": 0,
+      "total": 98000
+    },
+    {
+      "account": "bob",
+      "asset": "ETH",
+      "available": 100000,
+      "reserved": 0,
+      "total": 100000
+    },
+    {
+      "account": "bob",
+      "asset": "SOL",
+      "available": 100000,
+      "reserved": 0,
+      "total": 100000
+    },
+    {
+      "account": "bob",
+      "asset": "USD",
+      "available": 109990000,
+      "reserved": 0,
+      "total": 109990000
+    }
+  ],
+  "Fees": [
+    {
+      "account": "fees",
+      "asset": "BTC",
+      "available": 0,
+      "reserved": 0,
+      "total": 0
+    },
+    {
+      "account": "fees",
+      "asset": "ETH",
+      "available": 0,
+      "reserved": 0,
+      "total": 0
+    },
+    {
+      "account": "fees",
+      "asset": "SOL",
+      "available": 0,
+      "reserved": 0,
+      "total": 0
+    },
+    {
+      "account": "fees",
+      "asset": "USD",
+      "available": 20000,
+      "reserved": 0,
+      "total": 20000
+    }
+  ],
+  "Book": {
+    "instrument": "BTC-USD",
+    "sequence": 6,
+    "bids": [],
+    "asks": []
+  }
+}

@@ -1,0 +1,142 @@
+name: matchcore
+x-env: &env
+  DATABASE_URL: postgres://${POSTGRES_USER:-matchcore}:${POSTGRES_PASSWORD:-matchcore-local-only}@postgres:5432/${POSTGRES_DB:-matchcore}?sslmode=disable
+  API_KEYS: ${API_KEYS:?Copy .env.example to .env first}
+  NATS_URL: nats://nats:4222
+  REDIS_URL: redis:6379
+  MATCHER_ADDR: matchcore:9090
+  ALLOWED_ORIGINS: ${ALLOWED_ORIGINS:-http://localhost:5173}
+  OTEL_EXPORTER_OTLP_ENDPOINT: http://otel:4318
+  OTEL_EXPORTER_OTLP_INSECURE: "true"
+x-app: &app
+  image: matchcore-local
+  build: .
+  environment: *env
+  init: true
+  restart: unless-stopped
+services:
+  postgres:
+    image: postgres:18-bookworm
+    environment:
+      POSTGRES_USER: ${POSTGRES_USER:-matchcore}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-matchcore-local-only}
+      POSTGRES_DB: ${POSTGRES_DB:-matchcore}
+    ports: ["127.0.0.1:15432:5432"]
+    volumes: [pgdata:/var/lib/postgresql]
+    healthcheck:
+      test: [CMD-SHELL, "pg_isready -U $${POSTGRES_USER} -d $${POSTGRES_DB}"]
+      interval: 2s
+      timeout: 3s
+      retries: 30
+  redis:
+    image: redis:8-alpine
+    command: [redis-server, --appendonly, "yes", --maxmemory, 128mb, --maxmemory-policy, allkeys-lru]
+    ports: ["127.0.0.1:16379:6379"]
+    volumes: [redisdata:/data]
+    healthcheck:
+      test: [CMD, redis-cli, ping]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  nats:
+    image: nats:2.14-alpine
+    command: ["-js", "-sd", /data, "-m", "8222"]
+    ports: ["127.0.0.1:14222:4222", "127.0.0.1:18222:8222"]
+    volumes: [natsdata:/data]
+    healthcheck:
+      test: [CMD, wget, -q, -O, /dev/null, http://localhost:8222/healthz]
+      interval: 2s
+      timeout: 2s
+      retries: 30
+  migrate:
+    <<: *app
+    command: [migrate]
+    restart: "no"
+    depends_on:
+      postgres: {condition: service_healthy}
+  seed:
+    <<: *app
+    command: [seed]
+    restart: "no"
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+  matchcore:
+    <<: *app
+    ports: ["127.0.0.1:9090:9090", "127.0.0.1:8081:8081"]
+    depends_on:
+      seed: {condition: service_completed_successfully}
+    healthcheck:
+      test: [CMD, /app/matchcore, health, http://localhost:8081/readyz]
+      interval: 3s
+      timeout: 2s
+      retries: 30
+  publisher:
+    <<: *app
+    entrypoint: [/app/publisher]
+    depends_on:
+      migrate: {condition: service_completed_successfully}
+      nats: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, /app/matchcore, health, http://localhost:8082/readyz]
+      interval: 3s
+      timeout: 2s
+      retries: 30
+  gateway:
+    <<: *app
+    entrypoint: [/app/gateway]
+    ports: ["127.0.0.1:8080:8080"]
+    environment:
+      <<: *env
+      GATEWAY_ID: local-1
+    depends_on:
+      matchcore: {condition: service_healthy}
+      nats: {condition: service_healthy}
+      redis: {condition: service_healthy}
+    healthcheck:
+      test: [CMD, /app/matchcore, health, http://localhost:8080/readyz]
+      interval: 3s
+      timeout: 2s
+      retries: 30
+  web:
+    build: ./web
+    ports: ["127.0.0.1:5173:8080"]
+    depends_on:
+      gateway: {condition: service_healthy}
+    restart: unless-stopped
+  prometheus:
+    image: prom/prometheus:v3.13.5
+    command: [--config.file=/etc/prometheus/prometheus.yml]
+    ports: ["127.0.0.1:9091:9090"]
+    volumes: [./deployments/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml:ro,promdata:/prometheus]
+  grafana:
+    image: grafana/grafana:13.3.1
+    environment:
+      GF_SECURITY_ADMIN_PASSWORD: ${GRAFANA_ADMIN_PASSWORD:-matchcore-local-only}
+      GF_USERS_ALLOW_SIGN_UP: "false"
+    ports: ["127.0.0.1:3000:3000"]
+    volumes: [./deployments/grafana/provisioning:/etc/grafana/provisioning:ro,grafanadata:/var/lib/grafana]
+  otel:
+    image: otel/opentelemetry-collector:0.165.0
+    command: [--config=/etc/otelcol/config.yaml]
+    volumes: [./deployments/otel.yml:/etc/otelcol/config.yaml:ro]
+  acceptance:
+    <<: *app
+    profiles: [tools]
+    entrypoint: [/app/acceptance]
+    restart: "no"
+    volumes: [./benchmarks:/artifacts]
+  simulator:
+    <<: *app
+    profiles: [tools]
+    entrypoint: [/app/simulator]
+    command: [--url, http://gateway:8080]
+    restart: "no"
+    environment:
+      SIM_BUY_KEY: ${SIM_BUY_KEY:-local-maker-buy-0000001}
+      SIM_SELL_KEY: ${SIM_SELL_KEY:-local-maker-sell-000001}
+volumes:
+  pgdata:
+  redisdata:
+  natsdata:
+  promdata:
+  grafanadata:

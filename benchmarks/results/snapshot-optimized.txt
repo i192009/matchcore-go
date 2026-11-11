@@ -1,0 +1,8 @@
+goos: linux
+goarch: arm64
+pkg: github.com/matchcore/matchcore-go/internal/core
+BenchmarkBook/1000/Snapshot-8         	     100	    715445 ns/op	  687895 B/op	       6 allocs/op
+BenchmarkBook/10000/Snapshot-8        	     100	   7570039 ns/op	 8662688 B/op	      12 allocs/op
+BenchmarkBook/100000/Snapshot-8       	     100	  64065672 ns/op	88678632 B/op	      18 allocs/op
+PASS
+ok  	github.com/matchcore/matchcore-go/internal/core	7.658s

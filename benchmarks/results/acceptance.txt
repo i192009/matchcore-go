@@ -1,0 +1,2 @@
+PASS: real HTTP/gRPC orders matched 1 BTC at $50,000; partial seller, filled buyer, balanced settlement, fees, committed WebSocket execution, cancellation and reservation release verified
+PASS: restart reconstructed committed state; identical retry created no order, trade, event or financial effects

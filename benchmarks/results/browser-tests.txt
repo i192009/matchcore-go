@@ -1,0 +1,11 @@
+
+> matchcore-terminal@1.0.0 test:e2e
+> playwright test
+
+
+Running 2 tests using 1 worker
+
+  ✓  1 e2e/terminal.spec.ts:2:1 › authenticated terminal, real order, cancel, operations, account and responsive layout (2.9s)
+  ✓  2 e2e/terminal.spec.ts:73:1 › Grafana dashboard provisions engine metrics (3.6s)
+
+  2 passed (8.4s)

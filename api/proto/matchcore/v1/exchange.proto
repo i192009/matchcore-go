@@ -1,0 +1,36 @@
+syntax = "proto3";
+package matchcore.v1;
+option go_package = "github.com/matchcore/matchcore-go/api/gen/matchcore/v1;matchcorev1";
+
+service Exchange {
+ rpc PlaceOrder(PlaceOrderRequest) returns (Result);
+ rpc CancelOrder(CancelOrderRequest) returns (Result);
+ rpc GetOrder(Query) returns (Result);
+ rpc GetOrderBook(Query) returns (Result);
+ rpc GetRecentTrades(Query) returns (Result);
+ rpc GetAccountBalances(Query) returns (Result);
+ rpc GetOrderHistory(Query) returns (Result);
+ rpc ListInstruments(Query) returns (Result);
+ rpc GetOperations(Query) returns (Result);
+ rpc GetAudit(Query) returns (Result);
+ rpc GetAccountSummary(Query) returns (Result);
+ rpc GetMyTrades(Query) returns (Result);
+}
+enum Side { SIDE_UNSPECIFIED = 0; BUY = 1; SELL = 2; }
+enum OrderType { ORDER_TYPE_UNSPECIFIED = 0; LIMIT = 1; MARKET = 2; }
+enum TimeInForce { TIME_IN_FORCE_UNSPECIFIED = 0; GTC = 1; IOC = 2; }
+message PlaceOrderRequest {
+ string client_id = 1;
+ string instrument = 2;
+ Side side = 3;
+ OrderType type = 4;
+ TimeInForce tif = 5;
+ int64 price = 6;
+ int64 quantity = 7;
+ int64 max_spend = 8;
+}
+message CancelOrderRequest { string key = 1; string instrument = 2; string order_id = 3; }
+message Query { string instrument = 1; string order_id = 2; }
+// Result carries a versioned JSON domain document; command inputs remain strongly
+// typed. JSON integer units are defined in docs/api.md and the OpenAPI schema.
+message Result { bytes json = 1; }

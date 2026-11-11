@@ -1,0 +1,11 @@
+.env
+web/node_modules/
+web/dist/
+bin/
+*.exe
+*.test
+*.prof
+coverage.out
+playwright-report/
+test-results/
+.DS_Store

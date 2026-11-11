@@ -1,0 +1,9 @@
+.git
+.env
+web/node_modules
+web/dist
+benchmarks/*.prof
+test-results
+docs/screenshots
+*.test
+benchmarks/results
