@@ -194,3 +194,7 @@ Authentication uses environment-scoped keys with account ownership and admin che
 This is a credible, executable engineering artifact, not a production exchange or a compliance claim. The current deployment has one authoritative process, static instrument configuration, a coarse simulated price grid, no automatic election/HA, no FOK, no external asset movement and bounded history without pagination. Shared-account financial locks and full depth materialization limit scale. The OTel Collector logs traces without a persistent trace backend. Development networking is plaintext and its seeded credentials are public. TLS/mTLS, separated database roles, backups/PITR, distributed quotas, dedicated account-load profiles, typed response messages and durable trace storage are future deployment improvements.
 
 The matching, accounting, idempotency and recovery guarantees described above have executable evidence; availability under arbitrary partitions, real-market latency and production capacity do not.
+
+## License
+
+MIT - see [LICENSE](LICENSE).

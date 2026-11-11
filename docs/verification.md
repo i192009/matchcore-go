@@ -30,6 +30,7 @@ Verified locally on **11 November 2026**, using Linux/ARM64 containers on Window
 - Once browser specs were added, default Vitest discovery tried to execute Playwright files. Unit tests now have an explicit source-test configuration; browser assertions run under their own real Playwright runner in CI.
 - An initial k6 summary could not write into a root-owned mounted results directory. The workload now emits its summary to stdout, captured by the caller; the successful v2.3 result is checked in.
 - Dependency scanning initially found four module-level advisories in unused functions. Compatible patch upgrades removed those findings; the final scan reports none.
+- The first Ubuntu GitHub Actions run exposed host/container UID differences when saving the acceptance artifact. The Unix acceptance script now runs the helper as the invoking UID/GID, preserving non-root application containers and normal checkout permissions.
 
 No outstanding failed executed checks remain. Initial failures are recorded here rather than hidden or converted into disabled assertions. Actual checks cover the stated simulation guarantees, not arbitrary network partitions, database failover, cross-region operation or hardware durability.
 

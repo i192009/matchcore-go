@@ -8,11 +8,11 @@ The browser verified authentication, streaming synchronization, actual order sub
 
 | File | Screen | Dimensions |
 |---|---|---|
-| [terminal.png](terminal.png) | Trading terminal with simulated depth, executions and a resting order | 1512 ? 1624 |
-| [operations.png](operations.png) | Operations, writer state, queues and measured latency estimates | 1512 ? 1157 |
-| [account.png](account.png) | Available/reserved assets, fees, executions and transaction journal | 1512 ? 22601 |
-| [grafana.png](grafana.png) | Provisioned engine and event-delivery metrics dashboard | 1512 ? 982 |
-| [mobile.png](mobile.png) | Responsive trading terminal at mobile width | 390 ? 2790 |
+| [terminal.png](terminal.png) | Trading terminal with simulated depth, executions and a resting order | 1512 x 1624 |
+| [operations.png](operations.png) | Operations, writer state, queues and measured latency estimates | 1512 x 1157 |
+| [account.png](account.png) | Available/reserved assets, fees, executions and transaction journal | 1512 x 22601 |
+| [grafana.png](grafana.png) | Provisioned engine and event-delivery metrics dashboard | 1512 x 982 |
+| [mobile.png](mobile.png) | Responsive trading terminal at mobile width | 390 x 2790 |
 
 ## Main views
 
