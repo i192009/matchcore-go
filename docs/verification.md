@@ -1,6 +1,6 @@
 # Executed verification
 
-Verified locally on **11 November 2026**, using Linux/ARM64 containers on Windows/Docker Desktop. The complete app was built and started against real PostgreSQL 18, Redis 8 and NATS 2.14 JetStream. No remote GitHub Actions run or production deployment is claimed.
+Verified locally on **11 November 2026**, using Linux/ARM64 containers on Windows/Docker Desktop. The complete app was built and started against real PostgreSQL 18, Redis 8 and NATS 2.14 JetStream. Hosted checks are recorded separately in [GitHub Actions](https://github.com/i192009/matchcore-go/actions); no production deployment is claimed.
 
 | Check | Actual result / evidence |
 |---|---|
@@ -31,9 +31,10 @@ Verified locally on **11 November 2026**, using Linux/ARM64 containers on Window
 - An initial k6 summary could not write into a root-owned mounted results directory. The workload now emits its summary to stdout, captured by the caller; the successful v2.3 result is checked in.
 - Dependency scanning initially found four module-level advisories in unused functions. Compatible patch upgrades removed those findings; the final scan reports none.
 - The first Ubuntu GitHub Actions run exposed host/container UID differences when saving the acceptance artifact. The Unix acceptance script now runs the helper as the invoking UID/GID, preserving non-root application containers and normal checkout permissions.
+- Hosted vulnerability scanning caught the runner selecting cached Go 1.26.10, which is affected by standard-library advisory GO-2026-6859. CI and the module minimum now require Go 1.26.11, the patched version already used for local verification; the finding was not suppressed.
 
 No outstanding failed executed checks remain. Initial failures are recorded here rather than hidden or converted into disabled assertions. Actual checks cover the stated simulation guarantees, not arbitrary network partitions, database failover, cross-region operation or hardware durability.
 
 ## Verification limits
 
-The CI definition is supplied and local equivalents ran, but it has not run on GitHub until the user pushes this local repository. The measured performance samples are short and shared-system; memory/client/durable boundaries differ. Container images were built and run, while a complete OS/package CVE audit and independent security review were not performed. Financial invariants have executable tests, not a formal proof. Live TLS/mTLS, backup restoration/PITR, HA/failover, global rate limits and production capacity remain deployment work. The project is a simulated exchange with public local-only credentials.
+Local verification and hosted workflow outcomes are distinct records; consult the linked Actions history for the result associated with each pushed commit. The measured performance samples are short and shared-system; memory/client/durable boundaries differ. Container images were built and run, while a complete OS/package CVE audit and independent security review were not performed. Financial invariants have executable tests, not a formal proof. Live TLS/mTLS, backup restoration/PITR, HA/failover, global rate limits and production capacity remain deployment work. The project is a simulated exchange with public local-only credentials.

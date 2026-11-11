@@ -1,6 +1,6 @@
 # Local deployment
 
-Requirements: Docker Engine/Desktop with Linux containers, Compose v2.24.4 or newer, approximately 4 GiB free RAM for the full demo, and free loopback ports 5173, 8080, 8081, 9090, 9091, 3000, 15432, 16379, 14222 and 18222. Docker alone can build/run the application. Go 1.26+, Node 24 and GNU Make are needed only for native development commands. Image/dependency locks are recorded in the source and lockfiles; vendor patch tags are verified at build time.
+Requirements: Docker Engine/Desktop with Linux containers, Compose v2.24.4 or newer, approximately 4 GiB free RAM for the full demo, and free loopback ports 5173, 8080, 8081, 9090, 9091, 3000, 15432, 16379, 14222 and 18222. Docker alone can build/run the application. Go 1.26.11+, Node 24 and GNU Make are needed only for native development commands. Image/dependency locks are recorded in the source and lockfiles; vendor patch tags are verified at build time.
 
 ```sh
 cp .env.example .env

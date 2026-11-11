@@ -124,7 +124,7 @@ make acceptance
 make benchmark
 ```
 
-The isolated test stack and environment variables are documented in [deployment](docs/deployment.md). Checks and actual outcomes, including repaired initial failures and verification limits, are recorded in [verification](docs/verification.md). CI runs formatting, staticcheck, vet, race/unit/integration tests, Buf lint, frontend type/build/tests, dependency scans, Docker Compose startup, restart acceptance and Playwright browser checks. Remote GitHub Actions execution is not claimed until this repository is pushed and CI runs there.
+The isolated test stack and environment variables are documented in [deployment](docs/deployment.md). Checks and actual outcomes, including repaired initial failures and verification limits, are recorded in [verification](docs/verification.md). CI runs formatting, staticcheck, vet, race/unit/integration tests, Buf lint, frontend type/build/tests, dependency scans, Docker Compose startup, restart acceptance and Playwright browser checks. The [GitHub Actions history](https://github.com/i192009/matchcore-go/actions) records hosted checks for each published commit.
 
 Selected **executed local baselines**, with 50/50 non-crossing/crossing IOC submissions:
 
