@@ -1,18 +1,20 @@
 # MatchCore
 
-**A deterministic, high-performance trading matching engine built in Go, featuring price-time priority order books, transactional risk controls, durable event replay, real-time market data, and reproducible performance benchmarks.**
+**Deterministic trading matching and transactional settlement in Go.**
 
-Repository: `matchcore-go` · MIT licensed · Go 1.26 · React / TypeScript
+MatchCore runs price-time priority order books for BTC-USD, ETH-USD and SOL-USD, with atomic PostgreSQL risk controls, balanced simulated settlement, durable event replay, and real-time market data. The React terminal exposes actual committed executions, reservations and matching-service state.
 
-MatchCore is a working centralized-exchange **simulation** for BTC-USD, ETH-USD and SOL-USD. It uses internal issued balances and generated activity. It never connects to real exchanges, holds customer assets or initiates payments. Correct matching and financial conservation take priority over throughput claims.
+> MatchCore is a portfolio-scale exchange simulation. It uses internal issued balances and generated activity, with no connection to real exchanges, customer assets or payment systems.
 
-![Working trading terminal](docs/screenshots/terminal.png)
+**Local verification completed 11 November 2026:** 26 Go tests/fuzz targets (37 named test/subtest passes) with the race detector, four frontend tests, two browser tests, real PostgreSQL/Redis/NATS checks, and the trade/restart/idempotency acceptance scenario passed. See [verification evidence](docs/verification.md) and the [five captured result screens](screenshots/README.md).
 
 ## Run it
 
 Docker Desktop/Engine with Linux containers and Compose v2.24.4+ is sufficient. Copy the public **development-only** credentials into an ignored `.env`, then build the entire stack:
 
 ```sh
+git clone https://github.com/i192009/matchcore-go.git
+cd matchcore-go
 cp .env.example .env
 docker compose up --build -d
 docker compose ps
@@ -21,6 +23,8 @@ docker compose ps
 PowerShell:
 
 ```powershell
+git clone https://github.com/i192009/matchcore-go.git
+Set-Location matchcore-go
 Copy-Item .env.example .env
 docker compose up --build -d
 docker compose ps
@@ -39,7 +43,7 @@ On Windows, use `powershell -NoProfile -ExecutionPolicy Bypass -File scripts/acc
 
 Grafana: **http://localhost:3000/d/matchcore** (`admin`, local password in `.env`). Prometheus: **http://localhost:9091**. Readiness: **http://localhost:8080/readyz**. Detailed [deployment, troubleshooting and isolated-test instructions](docs/deployment.md) include native Go/Node development, all ports and an isolated acceptance project that can run beside an active demo.
 
-## Capabilities
+## Engineering problems demonstrated
 
 - Price-time priority, FIFO at a level, resting-price executions, limit GTC/IOC, market IOC, partial fills, cancellation and cancel-incoming self-trade prevention.
 - Checked integer price ticks, lot quantities and minor currency units; explicit market-buy budgets, order/exposure limits, conservative fee reservations and per-execution fee rounding.
@@ -134,13 +138,15 @@ These short development runs are different measurement boundaries, not interchan
 
 ## Dashboard and observability
 
+The [screenshot gallery](screenshots/README.md) records the capture context, screen descriptions and image dimensions.
+
 The terminal uses actual WebSocket updates. The execution chart contains committed simulated executions, not invented external prices. Operations shows queue/recovery state, commit counts, measured order-count rate, event delay and histogram latency estimates. Account shows available/reserved balances, lifetime fees, own executions and a bounded ledger/history view.
 
-![Operations dashboard](docs/screenshots/operations.png)
+![Operations dashboard](screenshots/operations.png)
 
-![Provisioned Grafana dashboard](docs/screenshots/grafana.png)
+![Provisioned Grafana dashboard](screenshots/grafana.png)
 
-Metrics cover command/order/trade counts, match attempts and latency, commit latency/failures, book depth, queues, safe state, recovery time, clients, outbox backlog, publication failures, delivery delay and Go/process resource metrics. Histogram bucket estimates in the UI are labelled; Grafana supplies rate-window quantiles. OTel Collector output and JSON trace IDs support HTTP → gRPC → engine correlation. [Account](docs/screenshots/account.png) and [mobile](docs/screenshots/mobile.png) screenshots are also included.
+Metrics cover command/order/trade counts, match attempts and latency, commit latency/failures, book depth, queues, safe state, recovery time, clients, outbox backlog, publication failures, delivery delay and Go/process resource metrics. Histogram bucket estimates in the UI are labelled; Grafana supplies rate-window quantiles. OTel Collector output and JSON trace IDs support HTTP → gRPC → engine correlation. [Account](screenshots/account.png) and [mobile](screenshots/mobile.png) screenshots are also included.
 
 ## Stack and repository
 

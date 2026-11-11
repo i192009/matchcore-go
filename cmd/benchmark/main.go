@@ -18,9 +18,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/internal/engine"
-	"github.com/matchcore/matchcore-go/internal/store"
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/internal/engine"
+	"github.com/i192009/matchcore-go/internal/store"
 )
 
 type report struct {

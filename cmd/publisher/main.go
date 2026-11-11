@@ -7,9 +7,9 @@ import (
 	"sync/atomic"
 	"time"
 
-	"github.com/matchcore/matchcore-go/internal/observability"
-	"github.com/matchcore/matchcore-go/internal/store"
-	"github.com/matchcore/matchcore-go/internal/transport"
+	"github.com/i192009/matchcore-go/internal/observability"
+	"github.com/i192009/matchcore-go/internal/store"
+	"github.com/i192009/matchcore-go/internal/transport"
 	"github.com/nats-io/nats.go"
 )
 

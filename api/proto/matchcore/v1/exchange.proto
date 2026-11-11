@@ -1,6 +1,6 @@
 syntax = "proto3";
 package matchcore.v1;
-option go_package = "github.com/matchcore/matchcore-go/api/gen/matchcore/v1;matchcorev1";
+option go_package = "github.com/i192009/matchcore-go/api/gen/matchcore/v1;matchcorev1";
 
 service Exchange {
  rpc PlaceOrder(PlaceOrderRequest) returns (Result);

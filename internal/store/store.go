@@ -10,10 +10,10 @@ import (
 	"sort"
 	"time"
 
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/migrations"
 	"github.com/jackc/pgx/v5"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/migrations"
 )
 
 type Store struct {

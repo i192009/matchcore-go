@@ -1,4 +1,4 @@
-module github.com/matchcore/matchcore-go
+module github.com/i192009/matchcore-go
 
 go 1.26.0
 

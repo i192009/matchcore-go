@@ -6,8 +6,8 @@ import (
 	"reflect"
 	"testing"
 
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/internal/store"
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/internal/store"
 )
 
 func TestOrderIDCollisionCannotOverwriteAnotherInstrument(t *testing.T) {

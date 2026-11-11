@@ -12,9 +12,9 @@ import (
 
 	"github.com/coder/websocket"
 	"github.com/coder/websocket/wsjson"
-	pb "github.com/matchcore/matchcore-go/api/gen/matchcore/v1"
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/internal/store"
+	pb "github.com/i192009/matchcore-go/api/gen/matchcore/v1"
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/internal/store"
 	"google.golang.org/grpc"
 )
 

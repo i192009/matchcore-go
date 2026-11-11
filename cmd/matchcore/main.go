@@ -9,11 +9,11 @@ import (
 	"os"
 	"time"
 
-	pb "github.com/matchcore/matchcore-go/api/gen/matchcore/v1"
-	"github.com/matchcore/matchcore-go/internal/engine"
-	"github.com/matchcore/matchcore-go/internal/observability"
-	"github.com/matchcore/matchcore-go/internal/store"
-	"github.com/matchcore/matchcore-go/internal/transport"
+	pb "github.com/i192009/matchcore-go/api/gen/matchcore/v1"
+	"github.com/i192009/matchcore-go/internal/engine"
+	"github.com/i192009/matchcore-go/internal/observability"
+	"github.com/i192009/matchcore-go/internal/store"
+	"github.com/i192009/matchcore-go/internal/transport"
 	"google.golang.org/grpc"
 )
 

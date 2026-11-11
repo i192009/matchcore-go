@@ -14,7 +14,7 @@ import (
 	"strings"
 	"time"
 
-	pb "github.com/matchcore/matchcore-go/api/gen/matchcore/v1"
+	pb "github.com/i192009/matchcore-go/api/gen/matchcore/v1"
 	"github.com/prometheus/client_golang/prometheus/promhttp"
 	"github.com/redis/go-redis/v9"
 	"google.golang.org/grpc/codes"

@@ -8,11 +8,11 @@ import (
 	"github.com/jackc/pgx/v5"
 	"time"
 
-	pb "github.com/matchcore/matchcore-go/api/gen/matchcore/v1"
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/internal/engine"
-	"github.com/matchcore/matchcore-go/internal/observability"
-	"github.com/matchcore/matchcore-go/internal/store"
+	pb "github.com/i192009/matchcore-go/api/gen/matchcore/v1"
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/internal/engine"
+	"github.com/i192009/matchcore-go/internal/observability"
+	"github.com/i192009/matchcore-go/internal/store"
 	"google.golang.org/grpc/codes"
 	"google.golang.org/grpc/status"
 )

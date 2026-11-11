@@ -481,7 +481,7 @@ const file_matchcore_v1_exchange_proto_rawDesc = "" +
 	"\rGetOperations\x12\x13.matchcore.v1.Query\x1a\x14.matchcore.v1.Result\x125\n" +
 	"\bGetAudit\x12\x13.matchcore.v1.Query\x1a\x14.matchcore.v1.Result\x12>\n" +
 	"\x11GetAccountSummary\x12\x13.matchcore.v1.Query\x1a\x14.matchcore.v1.Result\x128\n" +
-	"\vGetMyTrades\x12\x13.matchcore.v1.Query\x1a\x14.matchcore.v1.ResultBDZBgithub.com/matchcore/matchcore-go/api/gen/matchcore/v1;matchcorev1b\x06proto3"
+	"\vGetMyTrades\x12\x13.matchcore.v1.Query\x1a\x14.matchcore.v1.ResultBBZ@github.com/i192009/matchcore-go/api/gen/matchcore/v1;matchcorev1b\x06proto3"
 
 var (
 	file_matchcore_v1_exchange_proto_rawDescOnce sync.Once

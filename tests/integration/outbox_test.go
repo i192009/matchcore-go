@@ -8,8 +8,8 @@ import (
 	"testing"
 	"time"
 
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/internal/transport"
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/internal/transport"
 	"github.com/nats-io/nats.go"
 )
 

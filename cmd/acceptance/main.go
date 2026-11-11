@@ -16,9 +16,9 @@ import (
 
 	"github.com/coder/websocket"
 	"github.com/coder/websocket/wsjson"
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/internal/store"
-	"github.com/matchcore/matchcore-go/internal/transport"
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/internal/store"
+	"github.com/i192009/matchcore-go/internal/transport"
 )
 
 type state struct {

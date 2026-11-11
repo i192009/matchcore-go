@@ -7,8 +7,8 @@ import (
 	"reflect"
 	"sort"
 
+	"github.com/i192009/matchcore-go/internal/core"
 	"github.com/jackc/pgx/v5"
-	"github.com/matchcore/matchcore-go/internal/core"
 )
 
 type Snapshot struct {

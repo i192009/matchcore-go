@@ -4,7 +4,7 @@ import (
 	"context"
 	"errors"
 
-	"github.com/matchcore/matchcore-go/internal/observability"
+	"github.com/i192009/matchcore-go/internal/observability"
 )
 
 // PublishBatch serializes publishers with a transactional advisory lock. A

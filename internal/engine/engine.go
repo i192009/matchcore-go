@@ -10,10 +10,10 @@ import (
 	"sync/atomic"
 	"time"
 
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/internal/observability"
+	"github.com/i192009/matchcore-go/internal/store"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/internal/observability"
-	"github.com/matchcore/matchcore-go/internal/store"
 	"go.opentelemetry.io/otel"
 	"go.opentelemetry.io/otel/trace"
 )

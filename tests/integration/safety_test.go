@@ -12,11 +12,11 @@ import (
 	"testing"
 	"time"
 
+	"github.com/i192009/matchcore-go/internal/core"
+	"github.com/i192009/matchcore-go/internal/engine"
+	"github.com/i192009/matchcore-go/internal/store"
+	"github.com/i192009/matchcore-go/internal/transport"
 	"github.com/jackc/pgx/v5/pgxpool"
-	"github.com/matchcore/matchcore-go/internal/core"
-	"github.com/matchcore/matchcore-go/internal/engine"
-	"github.com/matchcore/matchcore-go/internal/store"
-	"github.com/matchcore/matchcore-go/internal/transport"
 	"github.com/nats-io/nats.go"
 	"github.com/redis/go-redis/v9"
 )
