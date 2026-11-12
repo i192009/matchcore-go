@@ -1,0 +1,29 @@
+{
+  "name": "verify",
+  "conclusion": "success",
+  "url": "https://github.com/i192009/matchcore-go/actions/runs/43067816644",
+  "head_sha": "101c6405533a3aa3c8c701e4f97eed5d409fbc79",
+  "started_at": "2026-11-11T17:24:10Z",
+  "updated_at": "2026-11-11T17:26:57Z",
+  "checked_on": "2026-11-12",
+  "jobs": [
+    {
+      "name": "backend",
+      "conclusion": "success",
+      "url": "https://github.com/i192009/matchcore-go/actions/runs/43067816644/job/130687360393",
+      "completed_at": "2026-11-11T17:26:57Z"
+    },
+    {
+      "name": "frontend",
+      "conclusion": "success",
+      "url": "https://github.com/i192009/matchcore-go/actions/runs/43067816644/job/130687360706",
+      "completed_at": "2026-11-11T17:24:29Z"
+    },
+    {
+      "name": "compose-acceptance",
+      "conclusion": "success",
+      "url": "https://github.com/i192009/matchcore-go/actions/runs/43067816644/job/130687361027",
+      "completed_at": "2026-11-11T17:26:37Z"
+    }
+  ]
+}

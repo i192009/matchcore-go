@@ -6,7 +6,7 @@ MatchCore runs price-time priority order books for BTC-USD, ETH-USD and SOL-USD,
 
 > MatchCore is a portfolio-scale exchange simulation. It uses internal issued balances and generated activity, with no connection to real exchanges, customer assets or payment systems.
 
-**Local verification completed 11 November 2026:** 26 Go tests/fuzz targets (37 named test/subtest passes) with the race detector, four frontend tests, two browser tests, real PostgreSQL/Redis/NATS checks, and the trade/restart/idempotency acceptance scenario passed. See [verification evidence](docs/verification.md) and the [five captured result screens](screenshots/README.md).
+**Local verification completed 11 November 2026:** 26 Go tests/fuzz targets (37 named test/subtest passes) with the race detector, four frontend tests, two browser tests, real PostgreSQL/Redis/NATS checks, and the trade/restart/idempotency acceptance scenario passed. See [verification evidence](docs/verification.md) and the [application screenshots and recorded results](screenshots/README.md).
 
 ## Run it
 
@@ -138,7 +138,7 @@ These short development runs are different measurement boundaries, not interchan
 
 ## Dashboard and observability
 
-The [screenshot gallery](screenshots/README.md) records the capture context, screen descriptions and image dimensions.
+The [screenshot gallery](screenshots/README.md) includes five application views plus verification, benchmark and hosted CI result screenshots, with capture dates, source evidence and image dimensions.
 
 The terminal uses actual WebSocket updates. The execution chart contains committed simulated executions, not invented external prices. Operations shows queue/recovery state, commit counts, measured order-count rate, event delay and histogram latency estimates. Account shows available/reserved balances, lifetime fees, own executions and a bounded ledger/history view.
 
